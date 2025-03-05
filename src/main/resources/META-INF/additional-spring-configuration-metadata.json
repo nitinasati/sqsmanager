@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "aws.sqs.arn",
+    "type": "java.lang.String",
+    "description": "A description for 'aws.sqs.arn'"
+  },
+  {
+    "name": "aws.sqs.url",
+    "type": "java.lang.String",
+    "description": "A description for 'aws.sqs.url'"
+  },
+  {
+    "name": "aws.sqs.queue.name",
+    "type": "java.lang.String",
+    "description": "A description for 'aws.sqs.queue.name'"
+  },
+  {
+    "name": "aws.sqs.monitoring.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'aws.sqs.monitoring.enabled'"
+  }
+]}

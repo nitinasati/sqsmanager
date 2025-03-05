@@ -1,23 +1,37 @@
 package com.glic.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.glic.service.RestApiService;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.RestTemplate;
 import software.amazon.awssdk.services.sqs.SqsClient;
 
-import static org.mockito.Mockito.mock;
-
 @TestConfiguration
-@TestPropertySource(properties = {
-    "aws.sqs.url=https://sqs.test.amazonaws.com/123456789012/test-queue",
-    "aws.sqs.queue.name=test-queue"
-})
 public class TestConfig {
 
-    @Bean
+    @Bean(name = "testRestTemplate")
     @Primary
-    public SqsClient sqsClient() {
-        return mock(SqsClient.class);
+    public RestTemplate testRestTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean(name = "testObjectMapper")
+    @Primary
+    public ObjectMapper testObjectMapper() {
+        return new ObjectMapper();
+    }
+
+    @Bean(name = "testRestApiService")
+    @Primary
+    public RestApiService testRestApiService(RestTemplate testRestTemplate, ObjectMapper testObjectMapper) {
+        return new RestApiService(testRestTemplate, testObjectMapper, "http://localhost:8080");
+    }
+
+    @Bean(name = "testSqsClient")
+    @Primary
+    public SqsClient testSqsClient() {
+        return SqsClient.builder().build();
     }
 } 
